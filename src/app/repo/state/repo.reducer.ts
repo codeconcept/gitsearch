@@ -15,9 +15,10 @@ const initialState: RepoState = {
 
 export function reducer(state = initialState, action: RepoActions) {
   switch(action.type) {
-    case RepoActionTypes.Load:
+    case RepoActionTypes.LoadSuccess:
       return {
         ...state,
+        repos: action.payload,
         requestedAt: new Date().toISOString()
       }
     default:

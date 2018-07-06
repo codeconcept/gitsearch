@@ -3,7 +3,9 @@ import { Repo } from "../repo";
 import { Action } from "@ngrx/store";
 
 export enum RepoActionTypes {
-  Load = "[Repo] Load"
+  Load = "[Repo] Load",
+  LoadSuccess = "[Repo] Load success",
+  LoadFailure = "[Repo] Load failure"
 }
 
 /**
@@ -15,7 +17,19 @@ export class Load implements Action {
   constructor(public payload: any = null) {}
 }
 
+export class LoadSuccess implements Action {
+  type = RepoActionTypes.LoadSuccess;
+
+  constructor(public payload: Repo[]) {}
+}
+
+export class LoadFailure implements Action {
+  type = RepoActionTypes.LoadFailure;
+
+  constructor(public payload: string) {}
+}
+
 /**
  * custom type for all possible repo action types
  */
-export type RepoActions = Load;
+export type RepoActions = Load | LoadSuccess | LoadFailure;
