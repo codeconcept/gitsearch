@@ -1,3 +1,13 @@
-<p>
-  repo-list works!
-</p>
+<h3>Liste de repositories</h3>
+<div *ngIf="(repos$ | async)?.length">
+  <div *ngFor="let rep of (repos$ | async)">
+    <a [href]="rep.html_url" target="_blank">{{rep.name}}</a>
+    <p *ngIf="rep.description; else noDescription">{{rep.description}}</p>
+    <ng-template #noDescription> <br>(pas de description) <br><br></ng-template>
+  </div>
+</div>
+
+<div>
+  <h3>Date de récupération</h3>
+  {{requestDates$ | async}}
+</div>
